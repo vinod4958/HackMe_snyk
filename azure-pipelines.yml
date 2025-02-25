@@ -37,5 +37,9 @@ steps:
     SNYK_TOKEN: $(SNYK_TOKEN)
   displayName: 'Security Scan'
 
-- publish: $(Build.ArtifactStagingDirectory)/results
-  artifact: results
+
+- task: PublishBuildArtifacts@1
+  inputs:
+    PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+    ArtifactName: 'drop'
+    publishLocation: 'Container'
