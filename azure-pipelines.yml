@@ -23,13 +23,10 @@ steps:
     npm install snyk-to-html -g
     mkdir -p results
     snyk auth $(SNYK_TOKEN)
-    snyk test --all-projects --json-file-output=results/oss.json
-    snyk code test --sarif-file-outout=results/sast.sarif
-    snyk-to-html -o results/oss.html < results/oss.json
-    snyk-to-html -o results/sast.html < results/sast.sarif
+    snyk test --all-projects
   env:
     SNYK_TOKEN: $(SNYK_TOKEN)
-- publish: $(System.DefaultWorkingDirectory)/results
-  artifact: results
-    
+  displayName: 'Security Scan'
+
+
    
